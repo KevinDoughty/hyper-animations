@@ -83,7 +83,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_color_handler__ = __webpack_require__(3);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_dimension_handler__ = __webpack_require__(4);
-/* unused harmony namespace reexport */
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2_dimension_handler__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_font_weight_handler__ = __webpack_require__(5);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_number_handler__ = __webpack_require__(6);
@@ -141,10 +141,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * limitations under the License.
  */
 
-//import scope from "./hyper-scope.js";
-//import scope from "hyper-scope";
-//import { test } from "hyper-scope";
-//export * from "./hyper-linked.js";
 
 
 var boxType = {
@@ -159,7 +155,7 @@ var boxType = {
  */
 
 };var dimensionTypes = {};
-dimensionhandler.forEach(function (handlers, index) {
+__WEBPACK_IMPORTED_MODULE_0__hyper_linked_js__["b" /* dimensionhandler */].forEach(function (handlers, index) {
 	handlers.forEach(function (handler) {
 		dimensionTypes[handler] = index;
 	});
@@ -167,7 +163,7 @@ dimensionhandler.forEach(function (handlers, index) {
 
 var dimensionType = function dimensionType(property) {
 	var number = dimensionTypes[property];
-	var handlerArray = dimensionhandler[number]; // parser, merger, properties
+	var handlerArray = __WEBPACK_IMPORTED_MODULE_0__hyper_linked_js__["b" /* dimensionhandler */][number]; // parser, merger, properties
 
 	// 	parse:hyper.dimensionhandler
 	// 	merge:
@@ -178,144 +174,28 @@ var dimensionType = function dimensionType(property) {
 		properties: handlerArray[2],
 		zero: function zero(value) {
 			return 0;
-			// 		return {px : 0};
 		},
-		add: function add(base, delta) {
+		add: function add(a, b) {
 			return 0;
-			// 		if (delta === null || delta === undefined) {
-			// 			delta = {}; // bug fix / hack. transformType does this too. So should the rest. If element is removed from dom, CompositedPropertyMap can"t applyAnimatedValues when additive. Lack of a transform also has this problem
-			// 		}
-			// 		if (base === null || base === undefined) {
-			// 			base = {}; // bug fix / hack. transformType does this too. So should the rest. If element is removed from dom, CompositedPropertyMap can"t applyAnimatedValues when additive. Lack of a transform also has this problem
-			// 		}
-			// 		var out = {};
-			// 		for (let value in base) {
-			// 			out[value] = base[value] + (delta[value] || 0);
-			// 		}
-			// 		for (let value in delta) {
-			// 			if (value in base) {
-			// 				continue;
-			// 			}
-			// 			out[value] = delta[value];
-			// 		}
-			// 		console.log("length add base:",base);
-			// 		console.log("length add delta:",delta);
-			// 		console.log("length add out:",out);
-			// 		return out;
 		},
-		subtract: function subtract(base, delta) {
+		subtract: function subtract(a, b) {
 			return 0;
-			// 		var inverse = this.inverse(delta);
-			// 		var result = this.add(base,inverse);
-			// 		console.log("length subtract base:",base);
-			// 		console.log("length subtract delta:",delta);
-			// 		console.log("length subtract out:",result);
-			// 		return result;
 		},
-		interpolate: function interpolate(from, to, f) {
-			var out = {};
-			for (var value in from) {
-				out[value] = interp(from[value], to[value], f);
-			}
-			for (var _value in to) {
-				if (_value in out) {
-					continue;
-				}
-				out[_value] = interp(0, to[_value], f);
-			}
-			return out;
+		interpolate: function interpolate(from, to, progress) {
+			return to;
 		},
 		output: function output(value) {
 			return value;
-			// 		if (!features) features = detectFeatures(); // !!!
-			// 		var s = "";
-			// 		var singleValue = true;
-			// 		console.log("length output stringified:",JSON.stringify(value));
-			// 		for (let item in value) {
-			// 			if (s === "") {
-			// 				s = value[item] + item;
-			// 			} else if (singleValue) {
-			// 				if (value[item] !== 0) {
-			// 					s = features.calcFunction +
-			// 							"(" + s + " + " + value[item] + item + ")";
-			// 					singleValue = false;
-			// 				}
-			// 			} else if (value[item] !== 0) {
-			// 				s = s.substring(0, s.length - 1) + " + " + value[item] + item + ")";
-			// 			}
-			// 		}
-			// 		console.log("length output pre:",value);
-			// 		console.log("length output post:",s);
-			// 		return s;
 		},
 		input: function input(value) {
 			var result = handlerArray[0](value);
 			console.log("%s input:%s; result:%s;", property, value, result);
 			return result;
-			return value;
-			// 		var result = lengthType.consumeValueFromString(value);
-			// 		console.log("length input pre:",value);
-			// 		if (result) {
-			// 			console.log("length input post:",result.value);
-			// 			return result.value;
-			// 		}
-			// 		console.log("length input undefined");
-			// 		return undefined;
 		}
 	};
 };
 
-dimensionType("left").input("qwerf");
-
-// var scope = require("hyper-scope");
-// var shared = require("hyper-shared");
-
-//var clamps = require("number-handler").clamp;
-
-var propertyHandlers = {};
-
-function toCamelCase(property) {
-	return property.replace(/-(.)/g, function (_, c) {
-		return c.toUpperCase();
-	});
-}
-function addPropertyHandler(parser, merger, property) {
-	propertyHandlers[property] = propertyHandlers[property] || [];
-	propertyHandlers[property].push([parser, merger]);
-}
-function addPropertiesHandler(parser, merger, properties) {
-	for (var i = 0; i < properties.length; i++) {
-		var property = properties[i];
-		addPropertyHandler(parser, merger, toCamelCase(property));
-	}
-}
-//webAnimations1.addPropertiesHandler = addPropertiesHandler;
-
-function parserForProperty(property) {
-	return propertyHandlers[property][0];
-}
-function mergerForProperty(property) {
-	return propertyHandlers[property][1];
-}
-var test = "it's time to get hyper";
-
-//console.log(test,scope);
-// console.log("webAnimations1:%s;",JSON.stringify(Object.keys(webAnimations1)));
-// console.log("webAnimationsNext:%s;",JSON.stringify(Object.keys(webAnimationsNext)));
-// console.log("webAnimationsShared:%s;",JSON.stringify(Object.keys(webAnimationsShared)));
-
-
-// module.exports = {
-// // 	webAnimations1:webAnimations1,
-// // 	webAnimationNext:webAnimationsNext,
-// // 	webAnimationsShared:webAnimationsShared,
-// 	typeOfProperty: getCssOnlyType
-// };
-
-//export var debug = test;
-//export default test;
-//export default test;
-//scope.typeOfProperty = true;//getCssOnlyType;
+//dimensionType("left").input("asdf");
 
 /***/ }),
 /* 2 */
@@ -397,7 +277,7 @@ var mergeBoxes = mergeWrappedNestedRepeated.bind(null, wrap, mergeComponent, ', 
 //   See the License for the specific language governing permissions and
 // limitations under the License.
 
-var colorhandler = [[parseColor, mergeColors, ['background-color', 'border-bottom-color', 'border-left-color', 'border-right-color', 'border-top-color', 'color', 'outline-color', 'text-decoration-color']]];
+var colorhandler = [[parseColor, mergeColors, ['background-color', 'border-bottom-color', 'border-left-color', 'border-right-color', 'border-top-color', 'color', 'fill', 'flood-color', 'lighting-color', 'outline-color', 'stop-color', 'stroke', 'text-decoration-color']]];
 
 
 
@@ -448,7 +328,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export dimensionhandler */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return dimensionhandler; });
 /* unused harmony export mergeDimensions */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__hyper_hyper_linked_js__ = __webpack_require__(0);
 // Copyright 2014 Google Inc. All rights reserved.
@@ -465,7 +345,7 @@ if (false) {
 //   See the License for the specific language governing permissions and
 // limitations under the License.
 
-var dimensionhandler = [[parseSizePairList, mergeNonNegativeSizePairList, ['background-size']], [parseLengthOrPercent, mergeDimensionsNonNegative, ['border-bottom-width', 'border-image-width', 'border-left-width', 'border-right-width', 'border-top-width', 'flex-basis', 'font-size', 'height', 'line-height', 'max-height', 'max-width', 'outline-width', 'width']], [parseLengthOrPercent, mergeDimensions, ['border-bottom-left-radius', 'border-bottom-right-radius', 'border-top-left-radius', 'border-top-right-radius', 'bottom', 'left', 'letter-spacing', 'margin-bottom', 'margin-left', 'margin-right', 'margin-top', 'min-height', 'min-width', 'outline-offset', 'padding-bottom', 'padding-left', 'padding-right', 'padding-top', 'perspective', 'right', 'shape-margin', 'text-indent', 'top', 'vertical-align', 'word-spacing']]];
+var dimensionhandler = [[parseSizePairList, mergeNonNegativeSizePairList, ['background-size']], [parseLengthOrPercent, mergeDimensionsNonNegative, ['border-bottom-width', 'border-image-width', 'border-left-width', 'border-right-width', 'border-top-width', 'flex-basis', 'font-size', 'height', 'line-height', 'max-height', 'max-width', 'outline-width', 'width']], [parseLengthOrPercent, mergeDimensions, ['border-bottom-left-radius', 'border-bottom-right-radius', 'border-top-left-radius', 'border-top-right-radius', 'bottom', 'left', 'letter-spacing', 'margin-bottom', 'margin-left', 'margin-right', 'margin-top', 'min-height', 'min-width', 'outline-offset', 'padding-bottom', 'padding-left', 'padding-right', 'padding-top', 'perspective', 'right', 'shape-margin', 'stroke-dashoffset', 'text-indent', 'top', 'vertical-align', 'word-spacing']]];
 
 
 
@@ -473,6 +353,67 @@ var dimensionhandler = [[parseSizePairList, mergeNonNegativeSizePairList, ['back
 
 
 
+
+// Evaluates a calc expression.
+// https://drafts.csswg.org/css-values-3/#calc-notation
+function calculate(expression) {
+  // In calc expressions, white space is required on both sides of the
+  // + and - operators. https://drafts.csswg.org/css-values-3/#calc-notation
+  // Thus any + or - immediately adjacent to . or 0..9 is part of the number,
+  // e.g. -1.23e+45
+  // This regular expression matches ( ) * / + - and numbers.
+  var tokenRegularExpression = /([\+\-\w\.]+|[\(\)\*\/])/g;
+  var currentToken;
+  function consume() {
+    var matchResult = tokenRegularExpression.exec(expression);
+    if (matchResult) currentToken = matchResult[0];else currentToken = undefined;
+  }
+  consume(); // Read the initial token.
+
+  function calcNumber() {
+    // https://drafts.csswg.org/css-values-3/#number-value
+    var result = Number(currentToken);
+    consume();
+    return result;
+  }
+
+  function calcValue() {
+    // <calc-value> = <number> | <dimension> | <percentage> | ( <calc-sum> )
+    if (currentToken !== '(') return calcNumber();
+    consume();
+    var result = calcSum();
+    if (currentToken !== ')') return NaN;
+    consume();
+    return result;
+  }
+
+  function calcProduct() {
+    // <calc-product> = <calc-value> [ '*' <calc-value> | '/' <calc-number-value> ]*
+    var left = calcValue();
+    while (currentToken === '*' || currentToken === '/') {
+      var operator = currentToken;
+      consume();
+      var right = calcValue();
+      if (operator === '*') left *= right;else left /= right;
+    }
+    return left;
+  }
+
+  function calcSum() {
+    // <calc-sum> = <calc-product> [ [ '+' | '-' ] <calc-product> ]*
+    var left = calcProduct();
+    while (currentToken === '+' || currentToken === '-') {
+      var operator = currentToken;
+      consume();
+      var right = calcProduct();
+      if (operator === '+') left += right;else left -= right;
+    }
+    return left;
+  }
+
+  // <calc()> = calc( <calc-sum> )
+  return calcSum();
+}
 
 function parseDimension(unitRegExp, string) {
   string = string.trim().toLowerCase();
@@ -494,7 +435,7 @@ function parseDimension(unitRegExp, string) {
   var taggedUnitRegExp = 'U(' + unitRegExp.source + ')';
 
   // Validating input is simply applying as many reductions as we can.
-  var typeCheck = string.replace(/[-+]?(\d*\.)?\d+/g, 'N').replace(new RegExp('N' + taggedUnitRegExp, 'g'), 'D').replace(/\s[+-]\s/g, 'O').replace(/\s/g, '');
+  var typeCheck = string.replace(/[-+]?(\d*\.)?\d+([Ee][-+]?\d+)?/g, 'N').replace(new RegExp('N' + taggedUnitRegExp, 'g'), 'D').replace(/\s[+-]\s/g, 'O').replace(/\s/g, '');
   var reductions = [/N\*(D)/g, /(N|D)[*/]N/g, /(N|D)O\1/g, /\((N|D)\)/g];
   var i = 0;
   while (i < reductions.length) {
@@ -508,7 +449,7 @@ function parseDimension(unitRegExp, string) {
   if (typeCheck != 'D') return;
 
   for (var unit in matchedUnits) {
-    var result = eval(string.replace(new RegExp('U' + unit, 'g'), '').replace(new RegExp(taggedUnitRegExp, 'g'), '*0'));
+    var result = calculate(string.replace(new RegExp('U' + unit, 'g'), '').replace(new RegExp(taggedUnitRegExp, 'g'), '*0'));
     if (!isFinite(result)) return;
     matchedUnits[unit] = result;
   }
@@ -637,6 +578,7 @@ function merge(left, right) {
 /* unused harmony export clamp */
 /* unused harmony export parseNumber */
 /* unused harmony export mergeNumbers */
+/* unused harmony export parseNumberList */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__hyper_hyper_linked_js__ = __webpack_require__(0);
 // Copyright 2014 Google Inc. All rights reserved.
 //
@@ -652,13 +594,14 @@ function merge(left, right) {
 //   See the License for the specific language governing permissions and
 // limitations under the License.
 
-var numberhandler = [[parseNumber, clampedMergeNumbers(0, Infinity), ['border-image-width', 'line-height']], [parseNumber, clampedMergeNumbers(0, 1), ['opacity', 'shape-image-threshold']], [parseNumber, mergeFlex, ['flex-grow', 'flex-shrink']], [parseNumber, mergePositiveIntegers, ['orphans', 'widows']], [parseNumber, round, ['z-index']]];
+var numberhandler = [[parseNumberList, mergeNumberLists, ['stroke-dasharray']], [parseNumber, clampedMergeNumbers(0, Infinity), ['border-image-width', 'line-height']], [parseNumber, clampedMergeNumbers(0, 1), ['opacity', 'shape-image-threshold']], [parseNumber, mergeFlex, ['flex-grow', 'flex-shrink']], [parseNumber, mergePositiveIntegers, ['orphans', 'widows']], [parseNumber, round, ['z-index']]];
+
 
 
 
 
 function numberToString(x) {
-  return x.toFixed(3).replace('.000', '');
+  return x.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
 }
 function clamp(min, max, x) {
   return Math.min(max, Math.max(min, x));
@@ -689,6 +632,32 @@ function clampedMergeNumbers(min, max) {
       return numberToString(clamp(min, max, x));
     }];
   };
+}
+
+function parseNumberList(string) {
+  var items = string.trim().split(/\s*[\s,]\s*/);
+  if (items.length === 0) {
+    return;
+  }
+  var result = [];
+  for (var i = 0; i < items.length; i++) {
+    var number = parseNumber(items[i]);
+    if (number === undefined) {
+      return;
+    }
+    result.push(number);
+  }
+  return result;
+}
+
+
+function mergeNumberLists(left, right) {
+  if (left.length != right.length) {
+    return;
+  }
+  return [left, right, function (numberList) {
+    return numberList.map(numberToString).join(' ');
+  }];
 }
 
 function round(left, right) {
@@ -1234,6 +1203,18 @@ function mergeTransforms(left, right) {
     }).join(' ');
   }];
 }
+
+transformToSvgMatrix = function transformToSvgMatrix(string) {
+  // matrix(<a> <b> <c> <d> <e> <f>)
+  var mat = transformListToMatrix(parseTransform(string));
+  return 'matrix(' + numberToLongString(mat[0]) + ' ' + // <a>
+  numberToLongString(mat[1]) + ' ' + // <b>
+  numberToLongString(mat[4]) + ' ' + // <c>
+  numberToLongString(mat[5]) + ' ' + // <d>
+  numberToLongString(mat[12]) + ' ' + // <e>
+  numberToLongString(mat[13]) + // <f>
+  ')';
+};
 
 if (false) testing.parseTransform = parseTransform;
 

@@ -7,7 +7,7 @@
 		},
 		"linker" : {
 			"plugins": [
-				"./hyper/babel-plugin-hyper-linker"
+				"./hyper/babel-plugin-hyper-linker.js"
 			],
 			"presets": [
 				[ "es2015", { "modules" : false } ]

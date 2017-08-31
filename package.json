@@ -19,6 +19,16 @@
     "*.min.js.map"
   ],
   "devDependencies": {
+    "rollup": "^0.49.2",
+    "webpack": "^3.3.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-tester": "^4.0.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-types": "^6.26.0",
+
     "minimatch": "^3.0.4",
     "mocha": "1.21.4",
     "chai": "^1.9.1",
@@ -43,6 +53,7 @@
     "source-map": "~0.1.40"
   },
   "scripts": {
+    "hyper": "BABEL_ENV=linker babel src --out-file ./hyper/hyper-linked.js && WEBPACK_ENV=build webpack --display-error-details --config ./hyper/webpack.config.js",
     "test": "grunt web-animations web-animations-next test gjslint git-status checkrepo"
   }
 }
