@@ -1,0 +1,17 @@
+{
+	"env": {
+		"webpack": {
+			"presets": [
+				[ "es2015", { "modules" : false } ]
+			]
+		},
+		"linker" : {
+			"plugins": [
+				"./hyper/babel-plugin-hyper-linker"
+			],
+			"presets": [
+				[ "es2015", { "modules" : false } ]
+			]
+		}
+	}
+}
