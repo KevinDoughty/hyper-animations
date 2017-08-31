@@ -120,7 +120,7 @@
       }
 
       if (determinant(perspectiveMatrix) === 0) {
-        return false;
+        return null;
       }
 
       var rhs = [];
@@ -435,5 +435,6 @@
 
   scope.dot = dot;
   scope.makeMatrixDecomposition = makeMatrixDecomposition;
+  scope.transformListToMatrix = convertToMatrix;
 
 })(webAnimations1, webAnimationsTesting);

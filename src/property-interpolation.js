@@ -78,6 +78,8 @@
     paddingRight: '0px',
     paddingTop: '0px',
     right: 'auto',
+    strokeDasharray: 'none',
+    strokeDashoffset: '0px',
     textIndent: '0px',
     textShadow: '0px 0px 0px transparent',
     top: 'auto',
@@ -123,4 +125,3 @@
   scope.propertyInterpolation = propertyInterpolation;
 
 })(webAnimationsShared, webAnimations1, webAnimationsTesting);
-

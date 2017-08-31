@@ -18,6 +18,8 @@ suite('dimension-handler', function() {
         {px: 50.0, em: -6.5});
     assert.deepEqual(webAnimations1.parseLength('calc((5px + 2px)*(1 + 2*(4 + 2*-5)) + 7px - (5em + 6vw/2)*4)'),
         {px: -70, em: -20, vw: -12});
+    assert.deepEqual(webAnimations1.parseLength('calc(-13.2E+1rem/+12e-1/(+1 + +2 - -2 * 2 - -3))'),
+        {rem: -11});
     assert.deepEqual(webAnimations1.parseLength('calc(calc(5px) + calc(((3))) *calc(calc(10px)))'),
         {px: 35});
   });
@@ -43,7 +45,7 @@ suite('dimension-handler', function() {
     assert.equal(webAnimations1.propertyInterpolation('left', '10px', '50px')(0.25), '20px');
     assert.equal(webAnimations1.propertyInterpolation('left', '10%', '50%')(0.25), '20%');
     assert.equal(webAnimations1.propertyInterpolation('left', '0px', '0.001px')(0.05), '0px');
-    assert.equal(webAnimations1.propertyInterpolation('left', '0px', '10px')(0.234), '2.340px');
+    assert.equal(webAnimations1.propertyInterpolation('left', '0px', '10px')(0.234), '2.34px');
     assert.equal(webAnimations1.propertyInterpolation('left', '10px', '10em')(0.4), 'calc(6px + 4em)');
     assert.equal(webAnimations1.propertyInterpolation('left', '10px', '10%')(0.4), 'calc(6px + 4%)');
     assert.equal(webAnimations1.propertyInterpolation('left', 'calc(10px + 5em)', 'calc(20px + 35em)')(0.4), 'calc(14px + 17em)');
@@ -70,5 +72,9 @@ suite('dimension-handler', function() {
     assert.isUndefined(webAnimations1.consumeLengthOrPercent('(10px'));
     assert.isUndefined(webAnimations1.consumeLengthOrPercent('(10px)'));
     assert.isUndefined(webAnimations1.consumeLengthOrPercent('calc(10px,10px)'));
+  });
+  test('interpolation of more specific properties', function() {
+    assert.equal(webAnimations1.propertyInterpolation('strokeDashoffset', '10px', '50px')(0.25), '20px');
+    assert.equal(webAnimations1.propertyInterpolation('textIndent', '10px', '50px')(0.25), '20px');
   });
 });
