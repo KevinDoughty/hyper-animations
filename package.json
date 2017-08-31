@@ -1,18 +1,21 @@
 {
-  "name": "web-animations-js",
-  "description": "JavaScript implementation of the Web Animations API",
+  "name": "hyper-animations",
+  "description": "Just the parts I need from web-animations-js",
+  "main": "hyper-animations.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/web-animations/web-animations-js.git"
+    "url": "git+https://github.com/kevindoughty/hyper-animations.git"
   },
-  "version": "2.3.1",
+  "version": "0.0.1",
   "keywords": [
-    "animations",
-    "polyfill"
+    "relative",
+    "additive",
+    "style",
+    "CSS",
+    "animation"
   ],
-  "homepage": "https://github.com/web-animations",
+  "homepage": "https://github.com/kevindoughty/hyper-animations/#readme",
   "license": "Apache-2.0",
-  "main": "web-animations.min.js",
   "files": [
     "src/*",
     "*.min.js",
