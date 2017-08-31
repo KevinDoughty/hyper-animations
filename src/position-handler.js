@@ -62,9 +62,11 @@
     });
   }
 
+
   var mergeOffsetList = scope.mergeNestedRepeated.bind(null, scope.mergeDimensions, ' ');
   scope.addPropertiesHandler(parseOrigin.bind(null, 3), mergeOffsetList, ['transform-origin']);
   scope.addPropertiesHandler(parseOrigin.bind(null, 2), mergeOffsetList, ['perspective-origin']);
+
 
   function consumePosition(string) {
     var result = scope.consumeRepeated(consumeOffset, /^/, string);
