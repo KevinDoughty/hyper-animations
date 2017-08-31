@@ -12,18 +12,7 @@
 //   See the License for the specific language governing permissions and
 // limitations under the License.
 
-//var clamp = require("clamp");
-//import { clamp } from "number-handler";
-
 (function(scope) {
-
-
-
-//   function testFWH() {
-//     return true;
-//   }
-//   testFWH("poiu");
-
   function parse(string) {
     var out = Number(string);
     if (isNaN(out) || out < 100 || out > 900 || out % 100 !== 0) {
@@ -49,7 +38,5 @@
   }
 
   scope.addPropertiesHandler(parse, merge, ['font-weight']);
-  
-  scope.debugFWH = testFWH;
 
 })(webAnimations1);
