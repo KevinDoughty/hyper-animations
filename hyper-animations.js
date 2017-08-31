@@ -517,7 +517,6 @@ var mergeNonNegativeSizePairList = mergeNestedRepeated.bind(undefined, mergeNonN
 
 "use strict";
 /* unused harmony export fontweighthandler */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__hyper_hyper_linked_js__ = __webpack_require__(0);
 // Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -532,17 +531,7 @@ var mergeNonNegativeSizePairList = mergeNestedRepeated.bind(undefined, mergeNonN
 //   See the License for the specific language governing permissions and
 // limitations under the License.
 
-//var clamp = require("clamp");
-//import { clamp } from "number-handler";
-
 var fontweighthandler = [[parse, merge, ['font-weight']]];
-
-
-
-//   function testFWH() {
-//     return true;
-//   }
-//   testFWH("poiu");
 
 function parse(string) {
   var out = Number(string);

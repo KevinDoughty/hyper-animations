@@ -56,7 +56,7 @@
     "source-map": "~0.1.40"
   },
   "scripts": {
-    "hyper": "BABEL_ENV=linker babel src --out-file ./hyper/hyper-linked.js && WEBPACK_ENV=build webpack --display-error-details --config ./hyper/webpack.config.js",
+    "hyper": "BABEL_ENV=linker babel src --out-file ./hyper/hyper-linked.js --no-babelrc --plugins='../hyper/babel-plugin-hyper-linker.js' && WEBPACK_ENV=build webpack --display-error-details --config ./hyper/webpack.config.js",
     "test": "grunt web-animations web-animations-next test gjslint git-status checkrepo"
   }
 }
